@@ -1,0 +1,52 @@
+{% load static %}
+
+
+
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<body>
+
+
+
+
+<div class="container marketing p-4">
+
+<div class="row mt-5">
+
+
+
+
+
+{% for PostMainHomes in PostMainHome %}
+
+
+
+  <div class="col-lg-4" >
+    <img  class="rounded-circle" width="140" height="140" src="{{PostMainHomes.photo_url}}" alt="photo not found !!!">
+    <h2>{{PostMainHomes.title}}</h2>
+    <p style="flex-wrap: wrap;">{{PostMainHomes.description}}</p>
+    <p><a class="btn btn-secondary" href="{% url 'course' %}" role="button">View details &raquo;</a></p>
+  </div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+</div>

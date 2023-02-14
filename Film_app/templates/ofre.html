@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  Home | Ofre
+{% endblock title %}
+
+
+
+{% block content %}
+  
+    
+    
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 text-info">Offres</h1>
+    <p class="lead">Offres Actuellement Disponibles</p>
+  </div>
+  
+
+<div class="row">
+
+{% for ofres in ofre %}
+    
+
+<center>
+  
+    <div class="card-deck m-4 p-5 text-center">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h4 style="font-weight: 600;" class="my-0 text-primary font-weight-normal">{{ofres.status}}</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">{{ofres.price}} DA<small class="text-muted"></small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>{{ofres.program_of_offre1}}</li>
+            <li>{{ofres.program_of_offre1}}</li>
+            <li>{{ofres.program_of_offre1}}</li>
+            <li>{{ofres.program_of_offre1}}</li>
+          </ul>
+          <a href="{% url 'plus_info' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Voire Les Detail</button></a>
+        </div>
+      </div>
+      </div>
+    </center>
+
+      {% endfor %}
+
+</div>
+
+        
+
+
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
