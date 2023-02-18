@@ -13,7 +13,11 @@ def home(request):
 
     dawrat = Dawrat.objects.all()
 
+    item_name = request.GET.get('bbw')
 
+    if item_name != '' and item_name is not None:
+
+        dawrat = Dawrat.objects.filter(title__icontains = item_name)
 
     return render(request,'home.html',{'dawrat':dawrat})
 
