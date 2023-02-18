@@ -29,19 +29,6 @@
 
 
 
-{% for postMainHomes in PostMainHome %}
-
-
-
-  <div class="col-lg-4" >
-    <img  class="rounded-circle" width="140" height="140" src="{{postMainHomes.photo_url}}" alt="photo not found !!!">
-    <h2>{{postMainHomes.title}}</h2>
-    <p style="flex-wrap: wrap;">{{postMainHomes.description}}</p>
-    <p><a class="btn btn-secondary" href="{% url 'course' %}" role="button">Voir Les Details &raquo;</a></p>
-  </div>
-
-
-{% endfor %}
 
 
 
