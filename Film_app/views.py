@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Dawrat,PostMainHome ,Offre ,Comments ,Command
 from .urls import *
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -13,13 +14,20 @@ def home(request):
 
     dawrat = Dawrat.objects.all()
 
+
+    paginator = Paginator(dawrat,6)
+
+    page_nember = request.GET.get('page')
+    
+    page_obj = paginator.get_page(page_nember)
+    
     item_name = request.GET.get('bbw')
 
     if item_name != '' and item_name is not None:
 
-        dawrat = Dawrat.objects.filter(title__icontains = item_name)
+        page_obj = Dawrat.objects.filter(title__icontains = item_name)
 
-    return render(request,'home.html',{'dawrat':dawrat})
+    return render(request,'home.html',{'dawrat':page_obj})
 
 
 

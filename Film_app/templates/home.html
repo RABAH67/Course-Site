@@ -94,8 +94,6 @@
         {% endfor %}
 
 
-
-
      
       </div>
     </div>
@@ -103,4 +101,41 @@
 
 </main>
 
+{% if dawrat.has_other_pages %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center m-4">
+
+    {% if dawrat.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{dawrat.previous_page_number}}">Precedent</a>
+    </li>
+    {% endif %}
+
+    {% for i in dawrat.paginator.page_range %}
+      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+    {% endfor %}
+    {% if dawrat.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{dawrat.next_page_number}}">Suivant</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+
 {% endblock content %}
+
+
+
+
+  
+
+
+
+
+
+
+
