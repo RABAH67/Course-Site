@@ -38,9 +38,7 @@
   </head>
   <body>
 
-    <!--=================================================-->
 
-   
 
 
       <!--=================================================-->
@@ -67,16 +65,31 @@
 </nav>
 <!--===================================================-->
 
+    <!--==================Authontication==========================-->
+
+    <nav class="navbar navbar-light bg-white">
+      <form class="form-inline">
+        {% if request.user.is_authenticated %}
+        <button class="btn btn-outline-success m-3" type="button"><a href="{% url 'logout' %}">Logout</a></button>
+        <button class="btn btn-outline-success m-3" type="button"><a href="{% url 'profile' %}">My Profile</a></button>       
+        {% else %}
+        <button class="btn btn-outline-success m-3" type="button"><a href="{% url 'login' %}">Login</a></button>
+        <button class="btn btn-outline-success m-3" type="button"><a href="{% url 'singup' %}">Sing Up</a></button>
+        {% endif %}
+        
+
+
+      </form>
+    </nav>
+
+    <!--===================================================-->
+
 
 
 
 {% include 'scrol.html' %}
 
 
-
-
-
-<!--===================================================-->
 
 
 

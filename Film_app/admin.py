@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Dawrat ,Comments,PostMainHome,Offre,Command
+from .models import Dawrat ,Comments,PostMainHome,Offre,Command,Profil
 
 # Register your models here.
 
@@ -31,8 +31,10 @@ class Admincommand(admin.ModelAdmin):
 
 
 
+
 admin.site.register(Comments,Admincomment)
 admin.site.register(Dawrat,AdminDawrat)
 admin.site.register(Offre,AdminOffre)
 admin.site.register(Command,Admincommand)
 admin.site.register(PostMainHome)
+admin.site.register(Profil)

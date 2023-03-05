@@ -1,0 +1,31 @@
+{% extends 'base_registration.html' %}
+
+
+
+{% block title %}
+SingUp
+{% endblock title %}
+
+<div class="container m-5">
+{% block content %}
+
+<h1>sing up form<h1>
+
+
+
+    <form method="post">
+            {% csrf_token %}
+
+           {{form}}
+        <input value="Sing Up" type="submit">
+    </form>
+
+
+
+{% endblock content %}
+</div>
+
+
+
+
+

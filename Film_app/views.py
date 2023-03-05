@@ -1,9 +1,14 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Dawrat,PostMainHome ,Offre ,Comments ,Command
+from .models import Dawrat,PostMainHome ,Offre ,Comments ,Command ,Profil
 from .urls import *
 from django.core.paginator import Paginator
+from .forms import SingupForm ,UserForm,ProfileForm
+from django.contrib.auth import authenticate ,login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
 
 
 
@@ -100,7 +105,7 @@ def ofre(request,):
 
 
 
-
+@login_required
 def command(request):
 
     if request.method == 'POST':
@@ -134,3 +139,65 @@ def confarmation(request):
 
 
     return render(request,'confirm_comond.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def signup(request):
+    if request.method=="POST":
+        form = SingupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username,password=password)
+            login(request,user)
+            return redirect('profile')
+    else:
+        form = SingupForm()
+    return render(request,'singin.html',{'form':form})
+
+
+
+
+
+
+def profile(request):
+    
+    profile= Profil.objects.get(user=request.user)
+    return render(request,'profile/profile.html',{'profile':profile})
+
+
+
+def profile_edit(request):
+    
+    profile= Profil.objects.get(user=request.user)
+    
+    if request.method=="POST":
+        
+        userform = UserForm(request.POST,instance=request.user)
+        profileform = ProfileForm(request.POST,instance=profile)
+        
+        if userform.is_valid() and profileform.is_valid():
+            
+            userform.save()
+            myprofile = profileform.save(commit=False)
+            myprofile.user = request.user
+            myprofile.save()
+            return redirect('profile')
+        
+    else:
+        userform = UserForm(instance=request.user)
+        profileform = ProfileForm(instance=profile)
+    
+    return render(request,'profile/edit_profile.html',{'userform': userform  , 'profile':profileform})
